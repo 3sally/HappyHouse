@@ -1,0 +1,7 @@
+user_id,user_pass,user_name,user_phone,user_addr,user_email,isAdmin
+admin,admin,관리자,010-1234-5678,NULL,admin@naver.com,1
+ayun,ayun,심아윤,010-5464-3254,NULL,simay@naver.com,0
+dongjae,dongjae,장동재,010-5684-1232,NULL,jangdj@naver.com,0
+hyeji,hyeji,김혜지,010-4435-3463,NULL,kimhj@naver.com,0
+minjung,minjung,이민정,010-9366-3121,NULL,leemj@naver.com,0
+wonsik,wonsik,정원식,010-3246-9863,NULL,jungws@naver.com,0
