@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouseproject.model.mapper.NoticeMapper">
+	
+	<select id="listArticle" resultType="NoticeDto">
+		select *
+		from notices 
+		order by articleno desc
+	</select>
+	
+	<select id ="hotListArticle" resultType = "NoticeDto">
+		select *
+		from notices 
+		order by views desc
+		limit 5
+	</select>
+	
+	<update id="increaseViews" parameterType = "Integer">
+		update notices
+		set views = views+1
+		where articleno = #{articleno}
+	</update>
+	
+	<select id="getArticle" resultType="NoticeDto">
+		select *
+		from notices
+		where articleno = #{articleno}
+	</select>
+	
+	<insert id="registerArticle" parameterType="NoticeDto">
+		insert into notices (userid, subject, content)
+		values (#{userId}, #{subject}, #{content})
+	</insert>
+	
+	<update id="updateArticle" parameterType="NoticeDto" >
+		update notices
+		set userid = #{userId}, subject = #{subject}, content = #{content}
+		where articleno = #{articleNo}
+	</update>
+
+	<delete id="deleteArticle" parameterType="Integer">
+		delete from notices
+		where articleno = #{articleno}
+	</delete>
+	
+	<sql id="search">
+		<if test="word != null and word != ''">
+			<if test="key == subject">
+				and subject like concat('%', #{word}, '%')
+			</if>
+			<if test="key != subject">
+				and ${key} = #{word}
+			</if>
+		</if>
+	</sql>
+
+	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(articleno)
+		from notices
+		<where>
+			<include refid="search"></include>
+		</where>
+	</select>
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouseproject.model.mapper.QnAMapper">
+
+	<select id="getQnAList" resultType="qnADto">
+		select qna.qnano, qna.userid, qna.title, qna.content, qna.regtime, comment.content comment  
+		from qna left outer join comment
+		on qna.qnano = comment.qnano
+		order by qna.qnano desc
+	</select>
+	
+	<select id="getMyQnAList" parameterType="String" resultType ="qnaDto">
+		select qna.qnano, qna.userid, qna.title, qna.content, qna.regtime, comment.content comment 
+		from qna left outer join comment
+		on qna.qnano = comment.qnano
+		where qna.userid = #{userId}
+		order by qna.qnano desc;
+	</select>
+	
+	<select id="search" resultType="qnADto">
+		select * from qna where qnano = #{qnano}
+	</select>
+	
+	<insert id="create" parameterType="qnADto">
+		insert into qna(
+			title, userid, content
+		) values (
+			#{title}, #{userId}, #{content}
+		)
+	</insert>
+	
+	<update id="modify" parameterType="qnADto">
+		update qna set
+			title = #{title},
+			userid = #{userId}, 
+			content = #{content}
+		where qnano=#{qnaNo}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		delete
+		from qna
+		where qnano = #{qnano}
+	</delete>
+</mapper>

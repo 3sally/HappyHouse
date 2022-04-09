@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouseproject.model.mapper.CommentMapper">
+
+	<select id="searchComments" resultType="commentDto">
+		select * from comment where qnano = #{qnano}
+	</select>
+	
+	<insert id="create" parameterType="commentDto">
+		insert into comment(
+			qnano, userid, content
+		) values (
+			#{qnaNo}, #{userId}, #{content}
+		)
+	</insert>
+	
+	<update id="modify" parameterType="commentDto">
+		update comment set
+		content = #{content}
+		where qnano = #{qnaNo};
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		delete
+		from comment
+		where qnano = #{qnano}
+	</delete>
+</mapper>

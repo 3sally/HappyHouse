@@ -1,0 +1,13 @@
+package com.ssafy.happyhouseproject;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class HappyHouseProjectApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(HappyHouseProjectApplication.class, args);
+	}
+
+}

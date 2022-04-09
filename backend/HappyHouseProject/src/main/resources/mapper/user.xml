@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace = "com.ssafy.happyhouseproject.model.mapper.UserMapper">
+	
+	<select id="login" parameterType="UserDto" resultType="UserDto" resultMap="user">   
+		select *
+		from user
+		where user_id = #{userId} and user_pass = #{userPass} 
+	</select>
+	
+	<select id="getUserById" parameterType="String" resultType="userdto" resultMap="user">
+		select *
+		from user
+		where user_id = #{userId}
+	</select>
+	
+	<resultMap type="UserDto" id = "user">
+		<result column="user_id" property="userId"/>
+		<result column="user_pass" property="userPass"/>
+		<result column="user_name" property="userName"/>
+		<result column="user_phone" property="userPhone"/>
+		<result column="user_addr" property="userAddr"/>
+		<result column="user_email" property="userEmail"/>
+		<result column="interest_dong" property = "interestArea"/>
+		<result column="isAdmin" property="isAdmin"/>
+	</resultMap>
+	
+	 <select id="idCheck" parameterType="string" resultType="int">
+		select count(user_id)
+		from user
+		where user_id = #{userId}
+	</select> 
+
+	<insert id="registUser" parameterType="UserDto">
+		insert into user (user_id, user_pass, user_name, user_phone, user_addr, user_email)
+		values (#{userId}, #{userPass}, #{userName}, #{userPhone}, #{userAddr}, #{userEmail})
+	</insert>
+
+	
+	<select id="listUser" resultType="userDto" resultMap = "user">
+		select user.user_id, user.user_pass, user.user_name, user.user_phone, user.user_email, user_interest.interest_dong
+		from user left outer join user_interest
+		on user.user_id = user_interest.user_id
+	</select>
+	
+	<update id="updateUser" parameterType="UserDto">
+		update user
+		set user_id = #{userId}, user_pass = #{userPass}, user_name = #{userName}, user_phone = #{userPhone}, user_addr=#{userAddr}, user_email= #{userEmail}
+		where user_id =  #{userId};
+	</update>
+	
+	<delete id="deleteUser" parameterType="String">
+		delete from user
+		where user_id = #{userId}
+	</delete>
+	
+	<insert id="setInterestDong" parameterType = "UserDto">
+		insert into user_interest
+		values (#{userId}, #{interestArea})
+	</insert>
+	
+	<select id="getArea" parameterType="String" resultType = "String">
+		select interest_dong
+		from user_interest
+		where user_id = #{userId}
+	</select>
+	
+	<update id="updateInterestArea" parameterType = "UserDto">
+		update user_interest
+		set interest_dong = #{interestArea}
+		where user_id = #{userId}
+	</update>
+	
+</mapper>
