@@ -10,10 +10,10 @@
 
 ---
 
-- 1️⃣  프로젝트 소개
-- 2️⃣  기술 스택
-- 3️⃣  파일 구조
-- 4️⃣  산출물
+- [1️⃣  프로젝트 소개](#1️⃣-프로젝트-소개)
+- [2️⃣  기술 스택](#2️⃣-기술-스택)
+- [3️⃣  파일 구조](#3️⃣-파일-구조)
+- [4️⃣  산출물](#4️⃣-산출물)
 
 ---
 
@@ -123,5 +123,5 @@
 
 ### 4️⃣ 산출물
 
-- 발표 ppt
-- erd
+- [발표 ppt](https://github.com/3sally/HappyHouse/tree/main/%EC%82%B0%EC%B6%9C%EB%AC%BC/erd)
+- [erd](https://github.com/3sally/HappyHouse/tree/main/%EC%82%B0%EC%B6%9C%EB%AC%BC/%EB%B0%9C%ED%91%9Cppt)
